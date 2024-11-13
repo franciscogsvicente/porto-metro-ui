@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "https://porto-metro-api.vercel.app/$1"
-    }
-  ],
   "env": {
     "API_URL": "https://porto-metro-api.vercel.app"
   }
