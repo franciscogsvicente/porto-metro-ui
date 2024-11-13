@@ -6,10 +6,13 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
-  ]
+  ],
+  "static": {
+    "extensions": ["html", "js", "css", "json", "ico"]
+  }
 }
