@@ -17,8 +17,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "static": {
-    "extensions": ["html", "css", "js", "json", "ico"]
-  }
+  ]
 }
