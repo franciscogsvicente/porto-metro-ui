@@ -19,12 +19,11 @@ export class StopsComponent implements AfterViewInit {
   private route = inject(ActivatedRoute);
 
   stops$!: Observable<Stop[]>;
-  routeId!: string;
+  routeId: string = '';
 
   ngAfterViewInit(): void {
     this.stops$ = this.route.paramMap.pipe(
       map((params: ParamMap) => params.get('route_id')),
-      tap((routeId: string | null) => console.log(routeId)),
       filter((routeId: string | null) => routeId !== null),
       tap((routeId: string) => (this.routeId = routeId)),
       switchMap((routeId: string) =>

@@ -11,15 +11,11 @@ import { Arrival } from '../models/arrival';
 export class PortoMetroService {
   constructor(private http: HttpClient) {}
 
-  private readonly API_URL =
-    'https://5522-2001-8a0-f697-da00-2827-bd2f-6cd-436f.ngrok-free.app';
+  private readonly API_URL = 'https://porto-metro-api.vercel.app';
+  // private readonly API_URL = 'http://localhost:3000';
 
   getRoutes(): Observable<Route[]> {
-    return this.http.get<Route[]>(`${this.API_URL}/routes`, {
-      headers: {
-        'ngrok-skip-browser-warning': 'true',
-      },
-    });
+    return this.http.get<Route[]>(`${this.API_URL}/routes`);
   }
 
   getStops(search?: string): Observable<Stop[]> {
@@ -29,30 +25,16 @@ export class PortoMetroService {
       params = params.append('q', search);
     }
 
-    return this.http.get<Stop[]>(`${this.API_URL}/stops`, {
-      params,
-      headers: {
-        'ngrok-skip-browser-warning': 'true',
-      },
-    });
+    return this.http.get<Stop[]>(`${this.API_URL}/stops`, { params });
   }
 
   getStopsByRouteId(routeId: string): Observable<Stop[]> {
-    return this.http.get<Stop[]>(`${this.API_URL}/routes/${routeId}/stops`, {
-      headers: {
-        'ngrok-skip-browser-warning': 'true',
-      },
-    });
+    return this.http.get<Stop[]>(`${this.API_URL}/routes/${routeId}/stops`);
   }
 
   getNextArrivals(stopId: string): Observable<Arrival[]> {
     return this.http.get<Arrival[]>(
-      `${this.API_URL}/stops/${stopId}/nextArrivals`,
-      {
-        headers: {
-          'ngrok-skip-browser-warning': 'true',
-        },
-      }
+      `${this.API_URL}/stops/${stopId}/nextArrivals`
     );
   }
 }

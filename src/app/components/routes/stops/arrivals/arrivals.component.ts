@@ -4,7 +4,7 @@ import { filter, map, Observable, switchMap, tap } from 'rxjs';
 import { Arrival } from '../../../../models/arrival';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AsyncPipe, NgFor, NgIf, UpperCasePipe } from '@angular/common';
-import { uniqBy } from 'lodash';
+import { uniqBy } from 'lodash-es';
 import { MinutesToArrivePipe } from '../../../../pipes/minutes-to-arrive.pipe';
 import { HeaderComponent } from '../../../header/header.component';
 import { StorageService } from '../../../../services/storage.service';
