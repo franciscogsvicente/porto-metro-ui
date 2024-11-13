@@ -1,0 +1,19 @@
+<app-base
+  *ngIf="stopName$ | async as name"
+  [title]="name | uppercase"
+  [showFavoritesIcon]="true"
+  [isFavorite]="isFavorite"
+  (onClickFavoritesIcon)="onClickFavoritesIcon($event)"
+>
+  <ng-container *ngFor="let arrival of arrivals$ | async">
+    <a
+      class="flex items-center justify-between gap-6 p-4 bg-base-200 rounded border-t-4 border-opacity-100"
+    >
+      <div class="flex flex-col">
+        <span>Sentido</span>
+        <h3 class="font-bold">{{ arrival.trip_headsign }}</h3>
+      </div>
+      <span>{{ arrival.arrival_time | minutesToArrive }}</span>
+    </a>
+  </ng-container>
+</app-base>

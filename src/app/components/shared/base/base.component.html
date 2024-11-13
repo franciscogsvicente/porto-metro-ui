@@ -1,0 +1,12 @@
+<app-header
+  [title]="title"
+  [showFavoritesIcon]="showFavoritesIcon"
+  [isFavorite]="isFavorite"
+  (onClickFavoritesIcon)="onClickFavoritesIcon.emit($event)"
+></app-header>
+<div
+  class="flex flex-col pb-16"
+  [ngClass]="{ 'mb-12': (isOnline$ | async) ? true : false }"
+>
+  <ng-content></ng-content>
+</div>
