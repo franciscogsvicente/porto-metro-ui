@@ -1,13 +1,18 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "angular.json",
+      "use": "@vercel/angular"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "https://porto-metro-api.vercel.app/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
     }
-  ]
+  ],
+  "env": {
+    "API_URL": "https://porto-metro-api.vercel.app"
+  }
 }

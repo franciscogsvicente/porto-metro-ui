@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Route } from '../models/route';
 import { Stop } from '../models/stop';
 import { Arrival } from '../models/arrival';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,7 @@ import { Arrival } from '../models/arrival';
 export class PortoMetroService {
   constructor(private http: HttpClient) {}
 
-  private readonly API_URL = 'https://porto-metro-api.vercel.app';
-  // private readonly API_URL = 'http://localhost:3000';
+  private readonly API_URL = environment.API_URL;
 
   getRoutes(): Observable<Route[]> {
     return this.http.get<Route[]>(`${this.API_URL}/routes`);
