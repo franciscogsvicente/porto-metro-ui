@@ -5,7 +5,6 @@ import { AsyncPipe, NgForOf, NgStyle } from '@angular/common';
 import { Route } from '../../models/route';
 import { RoutesPipe } from '../../pipes/routes.pipe';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
 import { BaseComponent } from '../shared/base/base.component';
 
 @Component({

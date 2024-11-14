@@ -14,21 +14,18 @@ import { BaseComponent } from '../../shared/base/base.component';
   templateUrl: './stops.component.html',
   styleUrl: './stops.component.scss',
 })
-export class StopsComponent implements AfterViewInit {
+export class StopsComponent {
   private portoMetroService = inject(PortoMetroService);
   private route = inject(ActivatedRoute);
 
-  stops$!: Observable<Stop[]>;
-  routeId: string = '';
+  stops$: Observable<Stop[]> = this.route.paramMap.pipe(
+    map((params: ParamMap) => params.get('route_id')),
+    filter((routeId: string | null) => routeId !== null),
+    tap((routeId: string) => (this.routeId = routeId)),
+    switchMap((routeId: string) =>
+      this.portoMetroService.getStopsByRouteId(routeId)
+    )
+  );
 
-  ngAfterViewInit(): void {
-    this.stops$ = this.route.paramMap.pipe(
-      map((params: ParamMap) => params.get('route_id')),
-      filter((routeId: string | null) => routeId !== null),
-      tap((routeId: string) => (this.routeId = routeId)),
-      switchMap((routeId: string) =>
-        this.portoMetroService.getStopsByRouteId(routeId)
-      )
-    );
-  }
+  routeId: string = '';
 }

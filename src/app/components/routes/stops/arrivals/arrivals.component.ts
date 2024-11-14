@@ -59,9 +59,10 @@ export class ArrivalsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(async (params: ParamMap) => {
-      const stopId = params.get('stop_id');
       const favorites = (await this.storageService.getItem('favorites')) || [];
-      this.isFavorite = !!favorites.find((fav: Stop) => fav.stop_id === stopId);
+      this.isFavorite = !!favorites.find(
+        (fav: Stop) => fav.stop_id === params.get('stop_id')
+      );
     });
   }
 
