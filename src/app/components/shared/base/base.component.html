@@ -2,7 +2,9 @@
   [title]="title"
   [showFavoritesIcon]="showFavoritesIcon"
   [isFavorite]="isFavorite"
+  [showBackIcon]="showBackIcon"
   (onClickFavoritesIcon)="onClickFavoritesIcon.emit($event)"
+  (onClickBackIcon)="onClickBackIcon.emit()"
 ></app-header>
 <div
   class="flex flex-col pb-16"

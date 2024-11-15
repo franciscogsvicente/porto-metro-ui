@@ -1,4 +1,8 @@
-<app-base [title]="'LINHA ' + routeId">
+<app-base
+  [title]="'LINHA ' + (routeId$ | async)"
+  [showBackIcon]="true"
+  (onClickBackIcon)="goBack()"
+>
   <ng-container *ngFor="let stop of stops$ | async">
     <a
       [routerLink]="['/stops', stop.stop_id, 'nextArrivals']"

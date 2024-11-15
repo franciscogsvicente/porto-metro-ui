@@ -7,11 +7,6 @@ import { ArrivalsComponent } from './components/routes/stops/arrivals/arrivals.c
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/routes',
-    pathMatch: 'full',
-  },
-  {
     path: 'routes',
     component: RoutesComponent,
   },
@@ -30,6 +25,11 @@ export const routes: Routes = [
   {
     path: 'search',
     component: SearchStopComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/routes',
+    pathMatch: 'full',
   },
   { path: '**', redirectTo: '/' },
 ];

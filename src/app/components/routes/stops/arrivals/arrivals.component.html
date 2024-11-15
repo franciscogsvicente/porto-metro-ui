@@ -3,7 +3,9 @@
   [title]="name | uppercase"
   [showFavoritesIcon]="true"
   [isFavorite]="isFavorite"
+  [showBackIcon]="true"
   (onClickFavoritesIcon)="onClickFavoritesIcon($event)"
+  (onClickBackIcon)="goBack()"
 >
   <ng-container *ngFor="let arrival of arrivals$ | async">
     <a

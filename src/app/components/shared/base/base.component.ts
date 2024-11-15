@@ -17,18 +17,16 @@ import { AsyncPipe, NgClass } from '@angular/common';
   templateUrl: './base.component.html',
   styleUrl: './base.component.scss',
 })
-export class BaseComponent implements OnInit {
+export class BaseComponent {
   @Input({ required: true }) title!: string;
   @Input({ required: false }) showFavoritesIcon: boolean = false;
   @Input({ required: false }) isFavorite: boolean = false;
+  @Input({ required: false }) showBackIcon: boolean = false;
 
   @Output() onClickFavoritesIcon = new EventEmitter<boolean>();
+  @Output() onClickBackIcon = new EventEmitter<void>();
 
   private networkService = inject(NetworkService);
 
   isOnline$ = this.networkService.getNetworkStatus();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

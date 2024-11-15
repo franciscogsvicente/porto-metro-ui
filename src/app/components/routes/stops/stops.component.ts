@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PortoMetroService } from '../../../services/porto-metro.service';
 import { filter, map, Observable, switchMap, tap } from 'rxjs';
 import { Stop } from '../../../models/stop';
 import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf, Location } from '@angular/common';
 import { RoutesPipe } from '../../../pipes/routes.pipe';
 import { BaseComponent } from '../../shared/base/base.component';
 
@@ -17,15 +17,18 @@ import { BaseComponent } from '../../shared/base/base.component';
 export class StopsComponent {
   private portoMetroService = inject(PortoMetroService);
   private route = inject(ActivatedRoute);
+  private location = inject(Location);
 
-  stops$: Observable<Stop[]> = this.route.paramMap.pipe(
+  routeId$: Observable<string> = this.route.paramMap.pipe(
     map((params: ParamMap) => params.get('route_id')),
-    filter((routeId: string | null) => routeId !== null),
-    tap((routeId: string) => (this.routeId = routeId)),
-    switchMap((routeId: string) =>
-      this.portoMetroService.getStopsByRouteId(routeId)
-    )
+    filter((routeId): routeId is string => routeId !== null)
   );
 
-  routeId: string = '';
+  stops$: Observable<Stop[]> = this.routeId$.pipe(
+    switchMap((routeId) => this.portoMetroService.getStopsByRouteId(routeId))
+  );
+
+  goBack() {
+    this.location.back();
+  }
 }

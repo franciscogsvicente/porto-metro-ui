@@ -3,7 +3,13 @@ import { PortoMetroService } from '../../../../services/porto-metro.service';
 import { filter, map, Observable, switchMap, tap } from 'rxjs';
 import { Arrival } from '../../../../models/arrival';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { AsyncPipe, NgFor, NgIf, UpperCasePipe } from '@angular/common';
+import {
+  AsyncPipe,
+  NgFor,
+  NgIf,
+  UpperCasePipe,
+  Location,
+} from '@angular/common';
 import { uniqBy } from 'lodash-es';
 import { MinutesToArrivePipe } from '../../../../pipes/minutes-to-arrive.pipe';
 import { HeaderComponent } from '../../../header/header.component';
@@ -29,6 +35,7 @@ import { BaseComponent } from '../../../shared/base/base.component';
 export class ArrivalsComponent implements OnInit {
   private portoMetroService = inject(PortoMetroService);
   private route = inject(ActivatedRoute);
+  private location = inject(Location);
   private storageService = inject(StorageService);
 
   stop?: Stop;
@@ -84,5 +91,9 @@ export class ArrivalsComponent implements OnInit {
       );
       this.isFavorite = false;
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
