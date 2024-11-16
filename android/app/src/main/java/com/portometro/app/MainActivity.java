@@ -1,4 +1,4 @@
-package com.portometro.app;
+package io.portometro.app;
 
 import com.getcapacitor.BridgeActivity;
 
