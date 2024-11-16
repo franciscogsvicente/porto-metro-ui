@@ -12,6 +12,7 @@ import {
   BannerAdPosition,
   BannerAdSize,
 } from '@capacitor-community/admob';
+import { environment } from './environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,8 @@ import {
 export class AppComponent implements OnInit {
   private networkService = inject(NetworkService);
   private appMargin: number = 0;
+
+  isProduction: boolean = environment.production;
 
   isOnline$: Observable<boolean> = this.networkService.getNetworkStatus();
 
@@ -55,7 +58,7 @@ export class AppComponent implements OnInit {
     await AdMob.trackingAuthorizationStatus();
 
     await AdMob.initialize({
-      initializeForTesting: true,
+      initializeForTesting: this.isProduction ? false : true,
     });
 
     await this.showBanner();
@@ -63,8 +66,8 @@ export class AppComponent implements OnInit {
 
   async showBanner(): Promise<void> {
     const options: BannerAdOptions = {
-      adId: 'android-ad-id',
-      isTesting: true,
+      adId: environment.adId,
+      isTesting: this.isProduction ? false : true,
       position: BannerAdPosition.BOTTOM_CENTER,
       adSize: BannerAdSize.ADAPTIVE_BANNER,
       margin: 0,

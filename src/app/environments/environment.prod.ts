@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  API_URL: 'https://porto-metro-api.onrender.com',
+  apiUrl: 'https://porto-metro-api.onrender.com',
+  adId: 'my-add-id-prod',
 };

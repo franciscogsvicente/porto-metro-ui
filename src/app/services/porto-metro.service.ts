@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 export class PortoMetroService {
   constructor(private http: HttpClient) {}
 
-  private readonly API_URL = environment.API_URL;
+  private readonly API_URL = environment.apiUrl;
 
   getRoutes(): Observable<Route[]> {
     return this.http.get<Route[]>(`${this.API_URL}/routes`);
